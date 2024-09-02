@@ -80,6 +80,5 @@ Acesse este site “https://git-scm.com/” e instale o "Git". Em seguida, abra 
     ```sh	
     npm run dev 
     ```
-Se tudo correu como deveria, o projeto estará rodando na porta 3000 do localhost, abra o seu navegador e vá para este endereço: "http://localhost:3000"
 
 <p align="right">(<a href="#top">back to top</a>)</p>
