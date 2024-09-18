@@ -76,7 +76,7 @@ Acesse este site “https://git-scm.com/” e instale o "Git". Em seguida, abra 
     ```sh	
     npm install
     ```
-6. Use o comando à seguir para subr o projeto  
+6. Use o comando à seguir para subir o projeto  
     ```sh	
     npm run dev 
     ```
