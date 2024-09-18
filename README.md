@@ -24,7 +24,7 @@
 <!-- Sobre o Projeto -->
 ## Sobre o Projeto
 
-Oprojeto consiste em um site interativo de feedback de produtos, onde usuários podem explorar uma lista de produtos, compartilhar suas opiniões por meio de comentários e avaliar cada item com um sistema de estrelas. A plataforma visa facilitar a troca de experiências e ajudar outros consumidores a tomar decisões informadas com base nas avaliações da comunidade.
+O projeto consiste em um site interativo de feedback de produtos, onde usuários podem explorar uma lista de produtos, compartilhar suas opiniões por meio de comentários e avaliar cada item com um sistema de estrelas. A plataforma visa facilitar a troca de experiências e ajudar outros consumidores a tomar decisões informadas com base nas avaliações da comunidade.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
