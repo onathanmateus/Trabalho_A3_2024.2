@@ -3,7 +3,7 @@ import './globals.css'
 import Provider from './provider'
 
 export const metadata = {
-  title: 'ValeAPena?',
+  title: 'Feeds',
   description:
     'Neste site você terá total liberdade de avaliar produtos e expor sua opinião ao mundo !',
 }
