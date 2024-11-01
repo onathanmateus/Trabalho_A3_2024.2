@@ -1,46 +1,120 @@
 'use client'
 import React from 'react'
 
-import { Input } from '@nextui-org/react'
+import { FiEye, FiEyeOff } from 'react-icons/fi'
+import { MdOutlineMailOutline } from 'react-icons/md'
+import { IoPersonOutline } from 'react-icons/io5'
+import { Button, Input } from '@nextui-org/react'
 
-import { VscEye, VscEyeClosed } from 'react-icons/vsc'
+import feeds2 from '../../public/feeds2.png'
+import Image from 'next/image'
 
 export default function Login() {
   const [isVisible, setIsVisible] = React.useState(false)
+  const [isLogin, setIsLogin] = React.useState(false)
 
   const toggleVisibility = () => setIsVisible(!isVisible)
+  const toggleMode = () => setIsLogin(!isLogin)
 
   return (
-    <div className="m-0 flex h-screen w-screen items-center justify-center p-0">
-      <div className="flex flex-col gap-2 rounded-lg border-1 p-2 sm:m-0 md:mx-52 md:w-1/2">
-        <Input
-          type="email"
-          label="Email"
-          variant="bordered"
-          isRequired
-          className="h-full w-full"
-        />
-        <Input
-          type={isVisible ? 'text' : 'password'}
-          label="Password"
-          variant="bordered"
-          isRequired
-          className="h-full w-full"
-          endContent={
-            <button
-              className="focus:outline-none"
-              type="button"
-              onClick={toggleVisibility}
-              aria-label="toggle password visibility"
+    <div className="flex h-screen w-screen items-center justify-center">
+      <div className="flex h-[700px] w-full flex-col rounded-lg border-1 sm:w-[80%] md:flex-row lg:w-[70%] xl:w-[60%]">
+        <div className="flex h-[40%] w-full flex-col rounded-lg border-b bg-[#96ff96] md:h-full md:w-[40%] md:border-r">
+          <div className="flex h-[40%] w-full items-center justify-center">
+            <Image
+              src={feeds2}
+              alt="Logomarca do site"
+              width={450}
+              height={450}
+            />
+          </div>
+          <div className="flex h-[40%] w-full flex-col items-center justify-center space-y-3">
+            <h1 className="flex text-lg">
+              {isLogin ? 'Novo por aqui?' : 'Você tem um Cadastro?'}
+            </h1>
+            <p className="flex text-center">
+              {isLogin
+                ? 'Cadastre-se e faça parte da nossa comunidade!'
+                : 'Para se manter conectado conosco faça login com suas informações'}
+            </p>
+            <Button
+              size="md"
+              radius="lg"
+              className="w-1/3 bg-white"
+              onClick={toggleMode}
             >
-              {isVisible ? (
-                <VscEye className="pointer-events-none text-2xl text-default-400" />
-              ) : (
-                <VscEyeClosed className="pointer-events-none text-2xl text-default-400" />
-              )}
-            </button>
-          }
-        />
+              {isLogin ? 'Cadastro' : 'Login'}
+            </Button>
+          </div>
+          <div className="flex h-[20%] w-full items-center justify-center">
+            <p className="w-[90%] text-center text-xs">
+              &copy; <strong>FEEDS</strong> detém todos os direitos autorais
+              sobre os seus serviços. qualquer violação será rigorosamente
+              monitorada e pode resultar em ações legais.
+            </p>
+          </div>
+        </div>
+        <div className="flex h-[60%] w-full flex-col md:h-full md:w-[60%]">
+          <div className="flex h-[30%] w-full items-center justify-center">
+            <h1 className="flex text-3xl">
+              {isLogin ? 'Entre na sua conta' : 'Criar Conta'}
+            </h1>
+          </div>
+          <div className="flex h-[70%] w-full flex-col items-center justify-center space-y-10">
+            {!isLogin && (
+              <Input
+                isRequired
+                type="text"
+                radius="sm"
+                size="lg"
+                placeholder="Coloque o seu nome"
+                label="Nome"
+                startContent={
+                  <IoPersonOutline className="pointer-events-none text-xl text-default-400" />
+                }
+                className="max-w-xs"
+              />
+            )}
+            <Input
+              isRequired
+              type="email"
+              radius="sm"
+              size="lg"
+              startContent={
+                <MdOutlineMailOutline className="pointer-events-none text-xl text-default-400" />
+              }
+              placeholder="Coloque o seu email"
+              label="Email"
+              className="max-w-xs"
+            />
+            <Input
+              label="Senha"
+              isRequired
+              size="lg"
+              radius="sm"
+              placeholder="Coloque a sua senha"
+              endContent={
+                <button
+                  className="focus:outline-none"
+                  type="button"
+                  onClick={toggleVisibility}
+                  aria-label="toggle password visibility"
+                >
+                  {isVisible ? (
+                    <FiEye className="pointer-events-none text-xl" />
+                  ) : (
+                    <FiEyeOff className="pointer-events-none text-xl" />
+                  )}
+                </button>
+              }
+              type={isVisible ? 'text' : 'password'}
+              className="max-w-xs"
+            />
+            <Button size="md" radius="lg" className="w-1/3 bg-[#96ff96]">
+              {isLogin ? 'Entrar' : 'Cadastrar'}
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   )
