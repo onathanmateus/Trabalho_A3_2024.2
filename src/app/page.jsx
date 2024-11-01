@@ -17,9 +17,9 @@ export default function Login() {
   const toggleMode = () => setIsLogin(!isLogin)
 
   return (
-    <div className="bg-diagonal-split flex h-screen w-screen items-center justify-center">
+    <div className="bg-horizontal-split md:bg-diagonal-split flex h-screen w-screen items-center justify-center">
       <div className="flex h-[700px] w-full flex-col rounded-lg border-2 border-[#000000] md:w-[80%] md:flex-row">
-        <div className="flex h-[40%] w-full flex-col rounded-l-lg border-b bg-[#96ff96] md:h-full md:w-[40%] md:border-r">
+        <div className="flex h-[40%] w-full flex-col rounded-t-lg border-b bg-[#96ff96] md:h-full md:w-[40%] md:rounded-l-lg md:border-r">
           <div className="flex h-[40%] w-full items-center justify-center">
             <Image
               src={feeds2}
@@ -54,7 +54,7 @@ export default function Login() {
             </p>
           </div>
         </div>
-        <div className="flex h-[60%] w-full flex-col rounded-r-lg bg-[#ffffff] md:h-full md:w-[60%]">
+        <div className="flex h-[60%] w-full flex-col rounded-b-lg bg-[#ffffff] md:h-full md:w-[60%] md:rounded-r-lg">
           <div className="flex h-[20%] w-full items-center justify-center">
             <h1 className="flex text-3xl">
               {isLogin ? 'Entre na sua conta' : 'Criar Conta'}

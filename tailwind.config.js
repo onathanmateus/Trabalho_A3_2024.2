@@ -15,6 +15,7 @@ module.exports = {
       colors: {},
       backgroundImage: {
         'diagonal-split': 'linear-gradient(135deg, #96ff96 50%, #ffffff 50%)',
+        'horizontal-split': 'linear-gradient(180deg, #96ff96 50%, #ffffff 50%)',
       },
     },
   },
