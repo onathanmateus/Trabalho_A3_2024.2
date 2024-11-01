@@ -17,9 +17,9 @@ export default function Login() {
   const toggleMode = () => setIsLogin(!isLogin)
 
   return (
-    <div className="flex h-screen w-screen items-center justify-center">
-      <div className="flex h-[700px] w-full flex-col rounded-lg border-1 sm:w-[80%] md:flex-row lg:w-[70%] xl:w-[60%]">
-        <div className="flex h-[40%] w-full flex-col rounded-lg border-b bg-[#96ff96] md:h-full md:w-[40%] md:border-r">
+    <div className="bg-diagonal-split flex h-screen w-screen items-center justify-center">
+      <div className="flex h-[700px] w-full flex-col rounded-lg border-2 border-[#000000] md:w-[80%] md:flex-row">
+        <div className="flex h-[40%] w-full flex-col rounded-l-lg border-b bg-[#96ff96] md:h-full md:w-[40%] md:border-r">
           <div className="flex h-[40%] w-full items-center justify-center">
             <Image
               src={feeds2}
@@ -28,7 +28,7 @@ export default function Login() {
               height={450}
             />
           </div>
-          <div className="flex h-[40%] w-full flex-col items-center justify-center space-y-3">
+          <div className="mx-1 flex h-[40%] flex-col items-center justify-center space-y-3">
             <h1 className="flex text-lg">
               {isLogin ? 'Novo por aqui?' : 'Você tem um Cadastro?'}
             </h1>
@@ -54,13 +54,13 @@ export default function Login() {
             </p>
           </div>
         </div>
-        <div className="flex h-[60%] w-full flex-col md:h-full md:w-[60%]">
-          <div className="flex h-[30%] w-full items-center justify-center">
+        <div className="flex h-[60%] w-full flex-col rounded-r-lg bg-[#ffffff] md:h-full md:w-[60%]">
+          <div className="flex h-[20%] w-full items-center justify-center">
             <h1 className="flex text-3xl">
               {isLogin ? 'Entre na sua conta' : 'Criar Conta'}
             </h1>
           </div>
-          <div className="flex h-[70%] w-full flex-col items-center justify-center space-y-10">
+          <div className="flex h-[80%] w-full flex-col items-center justify-center space-y-5 md:space-y-10">
             {!isLogin && (
               <Input
                 isRequired
@@ -70,7 +70,7 @@ export default function Login() {
                 placeholder="Coloque o seu nome"
                 label="Nome"
                 startContent={
-                  <IoPersonOutline className="pointer-events-none text-xl text-default-400" />
+                  <IoPersonOutline className="pointer-events-none text-xl text-default-900" />
                 }
                 className="max-w-xs"
               />
@@ -81,7 +81,7 @@ export default function Login() {
               radius="sm"
               size="lg"
               startContent={
-                <MdOutlineMailOutline className="pointer-events-none text-xl text-default-400" />
+                <MdOutlineMailOutline className="pointer-events-none text-xl text-default-900" />
               }
               placeholder="Coloque o seu email"
               label="Email"
@@ -101,9 +101,9 @@ export default function Login() {
                   aria-label="toggle password visibility"
                 >
                   {isVisible ? (
-                    <FiEye className="pointer-events-none text-xl" />
+                    <FiEye className="pointer-events-none text-xl text-default-900" />
                   ) : (
-                    <FiEyeOff className="pointer-events-none text-xl" />
+                    <FiEyeOff className="pointer-events-none text-xl text-default-900" />
                   )}
                 </button>
               }
