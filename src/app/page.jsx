@@ -1,4 +1,5 @@
 'use client'
+
 import React from 'react'
 
 import { FiEye, FiEyeOff } from 'react-icons/fi'
@@ -17,7 +18,7 @@ export default function Login() {
   const toggleMode = () => setIsLogin(!isLogin)
 
   return (
-    <div className="bg-horizontal-split md:bg-diagonal-split flex h-screen w-screen items-center justify-center">
+    <div className="flex h-screen w-screen items-center justify-center bg-horizontal-split md:bg-diagonal-split">
       <div className="flex h-[700px] w-full flex-col rounded-lg border-2 border-[#000000] md:w-[80%] md:flex-row">
         <div className="flex h-[40%] w-full flex-col rounded-t-lg border-b bg-[#96ff96] md:h-full md:w-[40%] md:rounded-l-lg md:border-r">
           <div className="flex h-[40%] w-full items-center justify-center">
