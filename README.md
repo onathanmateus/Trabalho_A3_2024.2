@@ -18,6 +18,7 @@
         <li><a href="#installation">Instalação</a></li>
       </ul>
     </li>
+    <li><a href="#contact">Contato</a></li>
   </ol>
 </details>
 
@@ -81,5 +82,15 @@ Acesse este site “https://git-scm.com/” e instale o "Git". Em seguida, abra 
     npm run dev 
     ```
 Se tudo correu como deveria, o projeto estará rodando na porta 3000 do localhost, abra o seu navegador e vá para este endereço: "http://localhost:3000/"
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- Contato -->
+## Contato
+
+Autor: Nathan Mateus de Oliveira Barbosa <br>
+Email: nathanmateudeo@hotmail.com
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/onathanmateus) [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/onathanmateus)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
