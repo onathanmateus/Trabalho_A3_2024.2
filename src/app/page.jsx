@@ -27,12 +27,12 @@ export default function Login() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       })
+
       const data = await response.json()
 
       if (response.ok) {
-        // Aqui, salvamos o token no cookie e redirecionamos para a home
         console.log('Login realizado com sucesso:', data)
-        // Redirecionamento para a home ou outras ações pós-login
+        // Redirecionamento para a home
       } else {
         console.error('Erro ao fazer login:', data.message)
       }
@@ -48,11 +48,12 @@ export default function Login() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password }),
       })
+
       const data = await response.json()
 
       if (response.ok) {
         console.log('Cadastro realizado com sucesso:', data)
-        // Redirecionamento para a home ou outras ações pós-cadastro
+        // Redirecionamento para a home
       } else {
         console.error('Erro ao cadastrar:', data.message)
       }
