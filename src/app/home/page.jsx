@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Image from 'next/image'
+
 import feeds2 from '../../../public/feeds2.png'
 import iphone from '../../../public/Iphone.png'
 import samsung from '../../../public/Samsung.png'

@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import Image from 'next/image'
 
 import { FiEye, FiEyeOff } from 'react-icons/fi'
 import { MdOutlineMailOutline } from 'react-icons/md'
@@ -8,7 +9,6 @@ import { IoPersonOutline } from 'react-icons/io5'
 import { Button, Input } from '@nextui-org/react'
 
 import feeds2 from '../../public/feeds2.png'
-import Image from 'next/image'
 
 export default function Login() {
   const [isVisible, setIsVisible] = React.useState(false)
