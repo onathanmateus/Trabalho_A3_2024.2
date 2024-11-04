@@ -33,7 +33,7 @@ const produtos = [
   },
 ]
 
-export default function ProductPage() {
+export default function Home() {
   return (
     <div className="flex h-screen w-screen flex-col bg-[#EAF9E4]">
       {/* Logo no topo da página com fundo verde ajustado */}
