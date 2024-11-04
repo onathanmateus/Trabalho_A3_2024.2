@@ -13,9 +13,61 @@ import Image from 'next/image'
 export default function Login() {
   const [isVisible, setIsVisible] = React.useState(false)
   const [isLogin, setIsLogin] = React.useState(false)
+  const [email, setEmail] = React.useState('')
+  const [password, setPassword] = React.useState('')
+  const [name, setName] = React.useState('')
 
   const toggleVisibility = () => setIsVisible(!isVisible)
   const toggleMode = () => setIsLogin(!isLogin)
+
+  const handleLogin = async () => {
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      })
+      const data = await response.json()
+
+      if (response.ok) {
+        // Aqui, salvamos o token no cookie e redirecionamos para a home
+        console.log('Login realizado com sucesso:', data)
+        // Redirecionamento para a home ou outras ações pós-login
+      } else {
+        console.error('Erro ao fazer login:', data.message)
+      }
+    } catch (error) {
+      console.error('Erro na requisição de login:', error)
+    }
+  }
+
+  const handleSignup = async () => {
+    try {
+      const response = await fetch('/api/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password }),
+      })
+      const data = await response.json()
+
+      if (response.ok) {
+        console.log('Cadastro realizado com sucesso:', data)
+        // Redirecionamento para a home ou outras ações pós-cadastro
+      } else {
+        console.error('Erro ao cadastrar:', data.message)
+      }
+    } catch (error) {
+      console.error('Erro na requisição de cadastro:', error)
+    }
+  }
+
+  const handleSubmit = () => {
+    if (isLogin) {
+      handleLogin()
+    } else {
+      handleSignup()
+    }
+  }
 
   return (
     <div className="flex h-screen w-screen items-center justify-center bg-horizontal-split md:bg-diagonal-split">
@@ -74,6 +126,7 @@ export default function Login() {
                   <IoPersonOutline className="pointer-events-none text-xl text-default-900" />
                 }
                 className="max-w-xs"
+                onChange={(e) => setName(e.target.value)}
               />
             )}
             <Input
@@ -87,6 +140,7 @@ export default function Login() {
               placeholder="Coloque o seu email"
               label="Email"
               className="max-w-xs"
+              onChange={(e) => setEmail(e.target.value)}
             />
             <Input
               label="Senha"
@@ -110,8 +164,14 @@ export default function Login() {
               }
               type={isVisible ? 'text' : 'password'}
               className="max-w-xs"
+              onChange={(e) => setPassword(e.target.value)}
             />
-            <Button size="md" radius="lg" className="w-1/3 bg-[#96ff96]">
+            <Button
+              size="md"
+              radius="lg"
+              className="w-1/3 bg-[#96ff96]"
+              onClick={handleSubmit}
+            >
               {isLogin ? 'Entrar' : 'Cadastrar'}
             </Button>
           </div>
