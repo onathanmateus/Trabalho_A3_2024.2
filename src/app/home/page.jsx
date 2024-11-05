@@ -21,7 +21,7 @@ const produtos = [
   {
     id: 2,
     nome: 'Celular Samsung Galaxy A55 5G',
-    imagem: samsung,
+    imagem: samsung,        
     preco: 'R$429,00 a vista ou 12x de R$ 35,75',
     info: ['Câmera tripla 50MP', 'Tela Super AMOLED FHD+ de 6.6"', '256 GB Azul Claro']
   },
