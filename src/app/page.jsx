@@ -47,14 +47,15 @@ export default function Login() {
         body: JSON.stringify({ name, email, password }),
       })
 
-      const data = await response.json()
-
-      if (response.ok) {
-        console.log('Cadastro realizado com sucesso:', data)
-        toggleMode()
-      } else {
-        console.error('Erro ao cadastrar:', data.message)
+      if (!response.ok) {
+        const errorText = await response.text()
+        console.error('Erro ao cadastrar:', errorText)
+        return
       }
+
+      const data = await response.json()
+      console.log('Cadastro realizado com sucesso:', data)
+      toggleMode()
     } catch (error) {
       console.error('Erro na requisição de cadastro:', error)
     }
