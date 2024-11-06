@@ -44,13 +44,11 @@ export default function Login() {
         router.push('/home')
       } else {
         console.error('Erro ao fazer login:', data.message)
-        setMessage(data.message || 'Erro ao fazer login')
+        setMessage('Erro ao fazer login, tente novamente')
         setMessageType('error')
       }
     } catch (error) {
       console.error('Erro na requisição de login:', error)
-      setMessage('Erro ao fazer login')
-      setMessageType('error')
     }
   }
 
@@ -71,13 +69,11 @@ export default function Login() {
         toggleMode()
       } else {
         console.error('Erro ao cadastrar:', response.statusText)
-        setMessage(response.statusText || 'Erro ao cadastrar')
+        setMessage('Erro ao cadastrar usuário, tente novamente')
         setMessageType('error')
       }
     } catch (error) {
       console.error('Erro na requisição de cadastro:', error)
-      setMessage('Erro ao cadastrar')
-      setMessageType('error')
     }
   }
 
@@ -196,18 +192,13 @@ export default function Login() {
             </Button>
             {message && (
               <div className="mt-1 flex w-full justify-center">
-                <Card
-                  css={{
-                    maxWidth: '300px',
-                    backgroundColor:
-                      messageType === 'success' ? '#28a745' : '#dc3545',
-                    color: '#fff',
-                  }}
+                <div
+                  className={`max-w-xs rounded-lg p-4 text-center text-white ${
+                    messageType === 'success' ? 'bg-green-500' : 'bg-red-500'
+                  }`}
                 >
-                  <Card.Body>
-                    <p>{message}</p>
-                  </Card.Body>
-                </Card>
+                  <p>{message}</p>
+                </div>
               </div>
             )}
           </div>
