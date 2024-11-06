@@ -46,6 +46,8 @@ export default function Login() {
         body: JSON.stringify({ name, email, password }),
       })
 
+      console.log('resposta do servidor: ', response)
+
       if (response.ok) {
         console.log('Cadastro realizado com sucesso')
         toggleMode()
