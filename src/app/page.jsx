@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 import { FiEye, FiEyeOff } from 'react-icons/fi'
 import { MdOutlineMailOutline } from 'react-icons/md'
@@ -9,7 +10,6 @@ import { IoPersonOutline } from 'react-icons/io5'
 import { Button, Input } from '@nextui-org/react'
 
 import feeds2 from '../../public/feeds2.png'
-import { redirect } from 'next/navigation'
 
 export default function Login() {
   const [isVisible, setIsVisible] = React.useState(false)
@@ -20,22 +20,17 @@ export default function Login() {
 
   const toggleVisibility = () => setIsVisible(!isVisible)
   const toggleMode = () => setIsLogin(!isLogin)
+  const router = useRouter()
 
   const handleLogin = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/usuario/${email}`, {
-        // method: 'POST',
-        // headers: { 'Content-Type': 'application/json' },
-        // body: JSON.stringify({ email, password }),
-        'no-cors': true,
-      })
+      const response = await fetch(`http://localhost:8080/usuario/${email}`, {})
 
       const data = await response.json()
 
       if (response.ok) {
         console.log('Login realizado com sucesso:', data)
-        redirect('/home')
-        // Redirecionamento para a home
+        router.push('/home')
       } else {
         console.error('Erro ao fazer login:', data.message)
       }
@@ -50,7 +45,6 @@ export default function Login() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password }),
-        'no-cors': true,
       })
 
       const data = await response.json()
