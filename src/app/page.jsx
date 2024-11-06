@@ -2,12 +2,13 @@
 
 import React from 'react'
 import Image from 'next/image'
+import axios from 'axios'
 import { useRouter } from 'next/navigation'
 
 import { FiEye, FiEyeOff } from 'react-icons/fi'
 import { MdOutlineMailOutline } from 'react-icons/md'
 import { IoPersonOutline } from 'react-icons/io5'
-import { Button, Card, Input } from '@nextui-org/react'
+import { Button, Input } from '@nextui-org/react'
 
 import feeds2 from '../../public/feeds2.png'
 
@@ -26,24 +27,26 @@ export default function Login() {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:8080/usuario/buscarPorJSON`,
+      const response = await axios.get(
+        'http://localhost:8080/usuario/buscarPorJSON',
         {
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          data: {
+            email,
+            password,
+          },
         },
       )
 
-      const data = await response.json()
-
-      if (response.ok) {
-        console.log('Login realizado com sucesso:', data)
+      if (response.status === 200) {
+        console.log('Login realizado com sucesso:', response.data)
         setMessage('Login realizado com sucesso!')
         setMessageType('success')
         router.push('/home')
       } else {
-        console.error('Erro ao fazer login:', data.message)
+        console.error('Erro ao fazer login:', response.data.message)
         setMessage('Erro ao fazer login, tente novamente')
         setMessageType('error')
       }
@@ -54,15 +57,20 @@ export default function Login() {
 
   const handleSignup = async () => {
     try {
-      const response = await fetch('http://localhost:8080/usuario', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password }),
+      const response = await axios.post('http://localhost:8080/usuario', {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        data: {
+          name,
+          email,
+          password,
+        },
       })
 
       console.log('resposta do servidor: ', response)
 
-      if (response.ok) {
+      if (response.status === 200) {
         console.log('Cadastro realizado com sucesso')
         setMessage('Cadastro realizado com sucesso!')
         setMessageType('success')
