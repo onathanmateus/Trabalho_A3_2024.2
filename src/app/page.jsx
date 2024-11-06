@@ -24,7 +24,11 @@ export default function Login() {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/usuario/${email}`, {})
+      const response = await fetch(`http://localhost:8080/usuario`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      })
 
       const data = await response.json()
 
