@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
 import { MdOutlineMailOutline } from 'react-icons/md'
 import { IoPersonOutline } from 'react-icons/io5'
-import { Button, Input } from '@nextui-org/react'
+import { Button, Card, Input } from '@nextui-org/react'
 
 import feeds2 from '../../public/feeds2.png'
 
@@ -17,6 +17,8 @@ export default function Login() {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [name, setName] = React.useState('')
+  const [message, setMessage] = React.useState('')
+  const [messageType, setMessageType] = React.useState('')
 
   const toggleVisibility = () => setIsVisible(!isVisible)
   const toggleMode = () => setIsLogin(!isLogin)
@@ -37,12 +39,18 @@ export default function Login() {
 
       if (response.ok) {
         console.log('Login realizado com sucesso:', data)
+        setMessage('Login realizado com sucesso!')
+        setMessageType('success')
         router.push('/home')
       } else {
         console.error('Erro ao fazer login:', data.message)
+        setMessage(data.message || 'Erro ao fazer login')
+        setMessageType('error')
       }
     } catch (error) {
       console.error('Erro na requisição de login:', error)
+      setMessage('Erro ao fazer login')
+      setMessageType('error')
     }
   }
 
@@ -58,12 +66,18 @@ export default function Login() {
 
       if (response.ok) {
         console.log('Cadastro realizado com sucesso')
+        setMessage('Cadastro realizado com sucesso!')
+        setMessageType('success')
         toggleMode()
       } else {
         console.error('Erro ao cadastrar:', response.statusText)
+        setMessage(response.statusText || 'Erro ao cadastrar')
+        setMessageType('error')
       }
     } catch (error) {
       console.error('Erro na requisição de cadastro:', error)
+      setMessage('Erro ao cadastrar')
+      setMessageType('error')
     }
   }
 
@@ -180,6 +194,22 @@ export default function Login() {
             >
               {isLogin ? 'Entrar' : 'Cadastrar'}
             </Button>
+            {message && (
+              <div className="mt-1 flex w-full justify-center">
+                <Card
+                  css={{
+                    maxWidth: '300px',
+                    backgroundColor:
+                      messageType === 'success' ? '#28a745' : '#dc3545',
+                    color: '#fff',
+                  }}
+                >
+                  <Card.Body>
+                    <p>{message}</p>
+                  </Card.Body>
+                </Card>
+              </div>
+            )}
           </div>
         </div>
       </div>
