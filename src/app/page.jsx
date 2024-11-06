@@ -2,7 +2,6 @@
 
 import React from 'react'
 import Image from 'next/image'
-import axios from 'axios'
 import { useRouter } from 'next/navigation'
 
 import { FiEye, FiEyeOff } from 'react-icons/fi'
@@ -27,50 +26,45 @@ export default function Login() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.get(
+      const response = await fetch(
         'http://localhost:8080/usuario/buscarPorJSON',
         {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          data: {
-            email,
-            password,
-          },
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password }),
         },
       )
 
-      if (response.status === 200) {
-        console.log('Login realizado com sucesso:', response.data)
+      const data = await response.json()
+
+      if (response.ok) {
+        console.log('Login realizado com sucesso:', data)
         setMessage('Login realizado com sucesso!')
         setMessageType('success')
         router.push('/home')
       } else {
-        console.error('Erro ao fazer login:', response.data.message)
+        console.error('Erro ao fazer login:', data.message)
         setMessage('Erro ao fazer login, tente novamente')
         setMessageType('error')
       }
     } catch (error) {
       console.error('Erro na requisição de login:', error)
+      setMessage('Erro ao fazer login, tente novamente')
+      setMessageType('error')
     }
   }
 
   const handleSignup = async () => {
     try {
-      const response = await axios.post('http://localhost:8080/usuario', {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        data: {
-          name,
-          email,
-          password,
-        },
+      const response = await fetch('http://localhost:8080/usuario', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password }),
       })
 
       console.log('resposta do servidor: ', response)
 
-      if (response.status === 200) {
+      if (response.ok) {
         console.log('Cadastro realizado com sucesso')
         setMessage('Cadastro realizado com sucesso!')
         setMessageType('success')
@@ -82,6 +76,8 @@ export default function Login() {
       }
     } catch (error) {
       console.error('Erro na requisição de cadastro:', error)
+      setMessage('Erro ao cadastrar usuário, tente novamente')
+      setMessageType('error')
     }
   }
 
