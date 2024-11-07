@@ -2,7 +2,9 @@
 
 import React, { useState } from 'react'
 import Image from 'next/image'
-import AiOutlineSearch from 'react-icons/ai'
+
+import { AiOutlineSearch } from 'react-icons/ai'
+
 import feeds2 from '../../../public/feeds2.png'
 import iphone from '../../../public/Iphone.png'
 import samsung from '../../../public/Samsung.png'
