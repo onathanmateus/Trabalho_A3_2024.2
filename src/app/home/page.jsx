@@ -23,7 +23,6 @@ const produtos = [
       'Tela Super Retina XDR 6,1 polegadas',
       'Modo Cinema agora em 4K Dolby Vision até 30 qps',
     ],
-    comentarios: [],
   },
   {
     id: 2,
@@ -35,7 +34,6 @@ const produtos = [
       'Tela Super AMOLED FHD+ de 6.6"',
       '256 GB Azul Claro',
     ],
-    comentarios: [],
   },
   {
     id: 3,
@@ -43,7 +41,6 @@ const produtos = [
     imagem: jbl,
     preco: 'R$298,99',
     info: ['Sem fio', 'Possui microfone', 'Bateria: 76 horas'],
-    comentarios: [],
   },
   {
     id: 4,
@@ -51,7 +48,6 @@ const produtos = [
     imagem: notebook,
     preco: 'R$1398,00',
     info: ['Processador Celeron N4020C', '128GB', '4GB RAM'],
-    comentarios: [],
   },
   {
     id: 5,
@@ -59,42 +55,36 @@ const produtos = [
     imagem: camisa,
     preco: 'R$349,99',
     info: ['Modelo Torcedor', 'Marca Adidas', '100% Poliéster'],
-    comentarios: [],
   },
 ]
 
 export default function ProductPage() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedProductComments, setSelectedProductComments] = useState(null)
-  const [dropdownOpen, setDropdownOpen] = useState(null) // Para controlar qual produto tem o dropdown aberto
-  const [commentText, setCommentText] = useState('') // Para armazenar o texto do comentário
+  const [dropdownOpen, setDropdownOpen] = useState(null)
+  const [commentText, setCommentText] = useState('')
 
   const handleSearch = (event) => setSearchTerm(event.target.value)
 
-  // Abre o modal de comentários para o produto selecionado
   const openCommentsModal = (productId) => {
     const productComments = produtos.find((p) => p.id === productId)
-    setSelectedProductComments(productComments) // Armazenamos o produto e seus comentários
+    setSelectedProductComments(productComments)
   }
 
-  // Fecha o modal de comentários
   const closeCommentsModal = () => setSelectedProductComments(null)
 
-  // Filtra os produtos de acordo com o termo de pesquisa
   const filteredProducts = produtos.filter((produto) =>
     produto.nome.toLowerCase().includes(searchTerm.toLowerCase()),
   )
 
-  // Controla a abertura do dropdown para um produto específico
   const toggleDropdown = (productId) => {
     if (dropdownOpen === productId) {
-      setDropdownOpen(null) // Fecha o dropdown se já estiver aberto
+      setDropdownOpen(null)
     } else {
-      setDropdownOpen(productId) // Abre o dropdown para o produto selecionado
+      setDropdownOpen(productId)
     }
   }
 
-  // Função para adicionar um comentário
   const handleCommentSubmit = async (productId) => {
     if (commentText.trim()) {
       const product = produtos.find((p) => p.id === productId)
@@ -132,11 +122,9 @@ export default function ProductPage() {
 
   return (
     <div className="relative flex h-screen w-screen flex-col">
-      {/* Barra superior com logo e barra de pesquisa */}
       <div className="relative flex w-full items-center justify-center bg-[#43A047] px-4 py-4">
         <Image src={feeds2} alt="Logo" width={100} height={100} priority />
 
-        {/* Barra de pesquisa */}
         <div className="absolute right-4 flex w-1/3 max-w-md items-center rounded-full border border-gray-300 bg-[#C8E6C9] p-2 shadow-lg focus-within:border-[#43A047]">
           <AiOutlineSearch className="mr-3 text-gray-600" size={20} />
           <input
@@ -149,7 +137,6 @@ export default function ProductPage() {
         </div>
       </div>
 
-      {/* Informação dos produtos */}
       <div className="mt-4 flex w-full grow flex-wrap items-start justify-center gap-8 px-4">
         {filteredProducts.map((produto) => (
           <div
@@ -157,7 +144,6 @@ export default function ProductPage() {
             className="flex w-[400px] flex-col rounded-lg border border-gray-200 bg-white p-4 shadow-md"
           >
             <div className="flex">
-              {/* Imagem do produto à esquerda */}
               <div className="relative h-[120px] w-[120px] flex-shrink-0">
                 <Image
                   src={produto.imagem}
@@ -168,14 +154,12 @@ export default function ProductPage() {
                 />
               </div>
 
-              {/* Informações do produto à direita */}
               <div className="ml-4 flex flex-col justify-between">
                 <h2 className="text-lg font-bold">{produto.nome}</h2>
                 <p className="text-lg font-semibold text-green-600">
                   {produto.preco}
                 </p>
 
-                {/* Informações adicionais do produto */}
                 <div className="mt-2 space-y-1 text-sm text-gray-700">
                   {produto.info.map((info, index) => (
                     <p key={index}>{info}</p>
@@ -184,7 +168,6 @@ export default function ProductPage() {
               </div>
             </div>
 
-            {/* Botões */}
             <div className="mt-4 flex justify-between">
               <button
                 onClick={() => toggleDropdown(produto.id)}
@@ -200,7 +183,6 @@ export default function ProductPage() {
               </button>
             </div>
 
-            {/* Dropdown com input de comentário */}
             {dropdownOpen === produto.id && (
               <div className="mt-4 flex items-center space-x-2 rounded-lg bg-[#F1F8E9] p-2">
                 <input
@@ -222,7 +204,6 @@ export default function ProductPage() {
         ))}
       </div>
 
-      {/* Modal de comentários */}
       {selectedProductComments && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-50">
           <div className="w-full max-w-md rounded-lg bg-white p-6">
