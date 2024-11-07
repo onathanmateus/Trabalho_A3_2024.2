@@ -12,7 +12,6 @@ import jbl from '../../../public/fone.png'
 import notebook from '../../../public/notebook.png'
 import camisa from '../../../public/camisa.png'
 
-// Array de Produtos
 const produtos = [
   {
     id: 1,
