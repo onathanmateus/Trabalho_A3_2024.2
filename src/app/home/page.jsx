@@ -101,7 +101,7 @@ export default function ProductPage() {
 
       if (product) {
         const name = localStorage.getItem('name')
-        const email = localStorage.getItem('email')
+        const email = localStorage.getItem('userEmail')
 
         const commentData = {
           produto: product.nome,
