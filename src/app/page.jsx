@@ -68,6 +68,10 @@ export default function Login() {
         console.log('Cadastro realizado com sucesso')
         setMessage('Cadastro realizado com sucesso!')
         setMessageType('success')
+
+        localStorage.setItem('userEmail', email)
+        localStorage.setItem('password', password)
+        localStorage.setItem('name', name)
         toggleMode()
       } else {
         console.error('Erro ao cadastrar:', response.statusText)
