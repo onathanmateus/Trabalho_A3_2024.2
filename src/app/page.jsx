@@ -41,16 +41,19 @@ export default function Login() {
         console.log('Login realizado com sucesso:', data)
         setMessage('Login realizado com sucesso!')
         setMessageType('success')
+        setTimeout(() => setMessage(''), 2000)
         router.push('/home')
       } else {
         console.error('Erro ao fazer login:', data.message)
         setMessage('Erro ao fazer login, tente novamente')
         setMessageType('error')
+        setTimeout(() => setMessage(''), 2000)
       }
     } catch (error) {
       console.error('Erro na requisição de login:', error)
       setMessage('Erro ao fazer login, tente novamente')
       setMessageType('error')
+      setTimeout(() => setMessage(''), 2000)
     }
   }
 
@@ -72,16 +75,22 @@ export default function Login() {
         localStorage.setItem('userEmail', email)
         localStorage.setItem('password', password)
         localStorage.setItem('name', name)
+        setEmail('')
+        setPassword('')
+        setName('')
+        setTimeout(() => setMessage(''), 2000)
         toggleMode()
       } else {
         console.error('Erro ao cadastrar:', response.statusText)
         setMessage('Erro ao cadastrar usuário, tente novamente')
         setMessageType('error')
+        setTimeout(() => setMessage(''), 2000)
       }
     } catch (error) {
       console.error('Erro na requisição de cadastro:', error)
       setMessage('Erro ao cadastrar usuário, tente novamente')
       setMessageType('error')
+      setTimeout(() => setMessage(''), 2000)
     }
   }
 
