@@ -95,17 +95,41 @@ export default function ProductPage() {
   }
 
   // Função para adicionar um comentário
-  const handleCommentSubmit = (productId) => {
+  const handleCommentSubmit = async (productId) => {
     if (commentText.trim()) {
-      // Encontra o produto e adiciona o comentário
-      const productIndex = produtos.findIndex((p) => p.id === productId)
-      if (productIndex !== -1) {
-        produtos[productIndex].comentarios.push({
-          nome: 'Usuário',
+      const product = produtos.find((p) => p.id === productId)
+
+      if (product) {
+        const name = localStorage.getItem('name')
+        const email = localStorage.getItem('email')
+        const commentData = {
           comentario: commentText,
-        })
-        setCommentText('') // Limpa o campo de texto
-        setDropdownOpen(null) // Fecha o dropdown
+          produto: product.nome,
+          nomeUsuario: name,
+          emailUsuario: email,
+        }
+
+        try {
+          const response = await fetch(
+            'http://localhost:8080/usuario/comments',
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(commentData),
+            },
+          )
+
+          if (response.ok) {
+            setCommentText('')
+            setDropdownOpen(null)
+          } else {
+            console.error('Falha ao enviar comentário:', response.statusText)
+          }
+        } catch (error) {
+          console.error('Erro na requisição:', error)
+        }
       }
     }
   }
