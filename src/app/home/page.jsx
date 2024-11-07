@@ -110,6 +110,8 @@ export default function ProductPage() {
           nomeUsuario: name,
         }
 
+        console.log('Dados do comentário:', commentData)
+
         try {
           const response = await fetch(
             'http://localhost:8080/comments/CreateComment',
