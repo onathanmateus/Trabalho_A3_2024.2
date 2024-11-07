@@ -232,7 +232,10 @@ export default function ProductPage() {
           <div className="w-full max-w-md rounded-lg bg-white p-6">
             {comments.length > 0 ? (
               comments.map((comment, index) => (
-                <div key={index} className="mb-2">
+                <div
+                  key={index}
+                  className="mb-2 flex items-center justify-between"
+                >
                   <span className="font-semibold">{comment.user_name}:</span>
                   <p className="pl-4">{comment.comment_text}</p>
                 </div>
