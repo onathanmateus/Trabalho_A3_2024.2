@@ -102,6 +102,7 @@ export default function ProductPage() {
       if (product) {
         const name = localStorage.getItem('name')
         const email = localStorage.getItem('email')
+
         const commentData = {
           comentario: commentText,
           produto: product.nome,
@@ -111,7 +112,7 @@ export default function ProductPage() {
 
         try {
           const response = await fetch(
-            'http://localhost:8080/usuario/comments',
+            'http://localhost:8080/usuario/comments/CreateComment',
             {
               method: 'POST',
               headers: {
