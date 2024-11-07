@@ -109,10 +109,10 @@ export default function ProductPage() {
                 'Content-Type': 'application/json',
               },
               body: JSON.stringify({
-                produto: product.nome,
-                emailUsuario: localStorage.getItem('userEmail'),
-                comentario: commentText,
-                nomeUsuario: localStorage.getItem('name'),
+                product_name: product.nome,
+                user_email: localStorage.getItem('userEmail'),
+                comment_text: commentText,
+                user_name: localStorage.getItem('name'),
               }),
             },
           )
