@@ -112,7 +112,7 @@ export default function ProductPage() {
 
         try {
           const response = await fetch(
-            'http://localhost:8080/usuario/comments/CreateComment',
+            'http://localhost:8080/comments/CreateComment',
             {
               method: 'POST',
               headers: {
