@@ -60,18 +60,41 @@ const produtos = [
 
 export default function ProductPage() {
   const [searchTerm, setSearchTerm] = useState('')
-  const [selectedProductComments, setSelectedProductComments] = useState(null)
   const [dropdownOpen, setDropdownOpen] = useState(null)
   const [commentText, setCommentText] = useState('')
+  const [comments, setComments] = useState([])
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const handleSearch = (event) => setSearchTerm(event.target.value)
 
-  const openCommentsModal = (productId) => {
-    const productComments = produtos.find((p) => p.id === productId)
-    setSelectedProductComments(productComments)
+  const openCommentsModal = async (productId) => {
+    const product = produtos.find((p) => p.id === productId)
+
+    if (!product) {
+      console.error('Produto não encontrado')
+      return
+    }
+
+    try {
+      const response = await fetch(
+        `http://localhost:8080/comments/${encodeURIComponent(product.nome)}`,
+      )
+      if (response.ok) {
+        const data = await response.json()
+        setComments(data)
+        setIsModalOpen(true)
+      } else {
+        console.error('Falha ao buscar comentários:', response.statusText)
+      }
+    } catch (error) {
+      console.error('Erro na requisição:', error)
+    }
   }
 
-  const closeCommentsModal = () => setSelectedProductComments(null)
+  const closeCommentsModal = () => {
+    setIsModalOpen(false)
+    setComments([])
+  }
 
   const filteredProducts = produtos.filter((produto) =>
     produto.nome.toLowerCase().includes(searchTerm.toLowerCase()),
@@ -204,25 +227,16 @@ export default function ProductPage() {
         ))}
       </div>
 
-      {selectedProductComments && (
+      {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-50">
           <div className="w-full max-w-md rounded-lg bg-white p-6">
-            <h3 className="mb-4 text-xl font-bold">
-              Comentários de {selectedProductComments.nome}
-            </h3>
-            {selectedProductComments.comentarios.length > 0 ? (
-              <div>
-                <span className="font-semibold">Usuário:</span>
-                <div className="pl-4">
-                  {selectedProductComments.comentarios.map(
-                    (comentario, index) => (
-                      <div key={index} className="mb-2">
-                        <p>{comentario.comentario}</p>
-                      </div>
-                    ),
-                  )}
+            {comments.length > 0 ? (
+              comments.map((comment, index) => (
+                <div key={index} className="mb-2">
+                  <span className="font-semibold">{comment.user_name}:</span>
+                  <p className="pl-4">{comment.comment_text}</p>
                 </div>
-              </div>
+              ))
             ) : (
               <p>Não há comentários ainda.</p>
             )}
