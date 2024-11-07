@@ -104,10 +104,10 @@ export default function ProductPage() {
         const email = localStorage.getItem('email')
 
         const commentData = {
-          comentario: commentText,
           produto: product.nome,
-          nomeUsuario: name,
           emailUsuario: email,
+          comentario: commentText,
+          nomeUsuario: name,
         }
 
         try {
