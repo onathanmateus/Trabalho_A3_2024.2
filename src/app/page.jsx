@@ -21,7 +21,12 @@ export default function Login() {
   const [messageType, setMessageType] = React.useState('')
 
   const toggleVisibility = () => setIsVisible(!isVisible)
-  const toggleMode = () => setIsLogin(!isLogin)
+  const toggleMode = () => {
+    setIsLogin(!isLogin)
+    setName('')
+    setEmail('')
+    setPassword('')
+  }
   const router = useRouter()
 
   const handleLogin = async () => {
@@ -152,6 +157,7 @@ export default function Login() {
                 size="lg"
                 placeholder="Coloque o seu nome"
                 label="Nome"
+                value={name}
                 startContent={
                   <IoPersonOutline className="pointer-events-none text-xl text-default-900" />
                 }
@@ -170,6 +176,7 @@ export default function Login() {
               placeholder="Coloque o seu email"
               label="Email"
               className="max-w-xs"
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
             <Input
@@ -178,6 +185,7 @@ export default function Login() {
               size="lg"
               radius="sm"
               placeholder="Coloque a sua senha"
+              value={password}
               endContent={
                 <button
                   className="focus:outline-none"
