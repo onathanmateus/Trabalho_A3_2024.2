@@ -100,18 +100,6 @@ export default function ProductPage() {
       const product = produtos.find((p) => p.id === productId)
 
       if (product) {
-        const name = localStorage.getItem('name')
-        const email = localStorage.getItem('userEmail')
-
-        const commentData = {
-          produto: product.nome,
-          emailUsuario: email,
-          comentario: commentText,
-          nomeUsuario: name,
-        }
-
-        console.log('Dados do comentário:', commentData)
-
         try {
           const response = await fetch(
             'http://localhost:8080/comments/CreateComment',
@@ -120,7 +108,12 @@ export default function ProductPage() {
               headers: {
                 'Content-Type': 'application/json',
               },
-              body: JSON.stringify(commentData),
+              body: JSON.stringify({
+                produto: product.nome,
+                emailUsuario: localStorage.getItem('userEmail'),
+                comentario: commentText,
+                nomeUsuario: localStorage.getItem('name'),
+              }),
             },
           )
 
