@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import Image from 'next/image'
-import { AiOutlineSearch, AiFillStar } from 'react-icons/ai'
+import AiOutlineSearch from 'react-icons/ai'
 import feeds2 from '../../../public/feeds2.png'
 import iphone from '../../../public/Iphone.png'
 import samsung from '../../../public/Samsung.png'
@@ -14,19 +14,18 @@ import camisa from '../../../public/camisa.png'
 const produtos = [
   {
     id: 1,
-    nome: 'Apple iPhone 14 (128 GB) – Roxo',
+    nome: 'Apple iPhone 14',
     imagem: iphone,
     preco: 'R$4199',
     info: [
       'Tela Super Retina XDR 6,1 polegadas',
       'Modo Cinema agora em 4K Dolby Vision até 30 qps',
     ],
-    estrelas: 5,
-    comentarios: [], // Comentários começam vazios
+    comentarios: [],
   },
   {
     id: 2,
-    nome: 'Celular Samsung Galaxy A55 5G',
+    nome: 'Samsung Galaxy A55',
     imagem: samsung,
     preco: 'R$429,00',
     info: [
@@ -34,8 +33,7 @@ const produtos = [
       'Tela Super AMOLED FHD+ de 6.6"',
       '256 GB Azul Claro',
     ],
-    estrelas: 5,
-    comentarios: [], // Comentários começam vazios
+    comentarios: [],
   },
   {
     id: 3,
@@ -43,26 +41,23 @@ const produtos = [
     imagem: jbl,
     preco: 'R$298,99',
     info: ['Sem fio', 'Possui microfone', 'Bateria: 76 horas'],
-    estrelas: 5,
-    comentarios: [], // Comentários começam vazios
+    comentarios: [],
   },
   {
     id: 4,
-    nome: 'Notebook Ultra com Windows 11 Home',
+    nome: 'Notebook Ultra',
     imagem: notebook,
     preco: 'R$1398,00',
     info: ['Processador Celeron N4020C', '128GB', '4GB RAM'],
-    estrelas: 5,
-    comentarios: [], // Comentários começam vazios
+    comentarios: [],
   },
   {
     id: 5,
-    nome: 'Camisa do Flamengo 24/25 Masculina',
+    nome: 'Camisa do Flamengo',
     imagem: camisa,
     preco: 'R$349,99',
     info: ['Modelo Torcedor', 'Marca Adidas', '100% Poliéster'],
-    estrelas: 5,
-    comentarios: [], // Comentários começam vazios
+    comentarios: [],
   },
 ]
 
@@ -97,7 +92,7 @@ export default function ProductPage() {
     }
   }
 
-  // Função para adicionar um comentário (simulação)
+  // Função para adicionar um comentário
   const handleCommentSubmit = (productId) => {
     if (commentText.trim()) {
       // Encontra o produto e adiciona o comentário
@@ -157,17 +152,6 @@ export default function ProductPage() {
                 <p className="text-lg font-semibold text-green-600">
                   {produto.preco}
                 </p>
-
-                {/* Estrelas de avaliação */}
-                <div className="flex space-x-1">
-                  {Array.from({ length: 5 }, (_, index) => (
-                    <AiFillStar
-                      key={index}
-                      className="text-yellow-500"
-                      size={18}
-                    />
-                  ))}
-                </div>
 
                 {/* Informações adicionais do produto */}
                 <div className="mt-2 space-y-1 text-sm text-gray-700">
