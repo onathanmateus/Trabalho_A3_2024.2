@@ -19,6 +19,7 @@ export default function Login() {
   const [name, setName] = React.useState('')
   const [message, setMessage] = React.useState('')
   const [messageType, setMessageType] = React.useState('')
+  const router = useRouter()
 
   const toggleVisibility = () => setIsVisible(!isVisible)
   const toggleMode = () => {
@@ -27,7 +28,6 @@ export default function Login() {
     setEmail('')
     setPassword('')
   }
-  const router = useRouter()
 
   const handleLogin = async () => {
     try {
